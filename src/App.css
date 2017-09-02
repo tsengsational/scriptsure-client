@@ -1,0 +1,106 @@
+
+
+.centered {
+  text-align: center;
+}
+
+body {
+  background-color: transparent !important;
+}
+
+.big-text {
+  font-size: 1.5em !important;
+}
+
+/*#navbar {
+  background: linear-gradient(to right, #24c6dc, #514a9d);
+  opacity: .7;
+}*/
+
+#navbar {
+  background: linear-gradient(270deg, #06beb6, #18a2f0, #db5640);
+  background-size: 600% 600%;
+  opacity: .6;
+  top: -10vh;
+  left: -10vw;
+  z-Index: -1;
+  -webkit-animation: GradientNavbar 30s ease infinite;
+  -moz-animation: GradientNavbar 30s ease infinite;
+  animation: GradientNavbar 30s ease infinite;
+}
+
+#mask {
+  background: linear-gradient(270deg, #06beb6, #18a2f0, #db5640);
+  background-size: 600% 600%;
+  opacity: .6;
+  width: 120vw;
+  height: 120vh;
+  position: fixed;
+  top: -10vh;
+  left: -10vw;
+  z-Index: -1;
+  -webkit-animation: Gradient 30s ease infinite;
+  -moz-animation: Gradient 30s ease infinite;
+  animation: Gradient 30s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+ }
+ @-moz-keyframes Gradient {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+ }
+ @keyframes Gradient {
+   0%{background-position:0% 50%}
+   50%{background-position:100% 50%}
+   100%{background-position:0% 50%}
+ }
+
+ @-webkit-keyframes GradientNavbar {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  @-moz-keyframes GradientNavbar {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+  @keyframes GradientNavbar {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+.cousine {
+  font-family: 'Cousine', monospace !important;
+}
+
+.cover-text {
+  color: white;
+  font-family: 'Cousine', monospace;
+  font-size: 1.5em;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.ui.button {
+  font-family: 'Cousine', monospace !important;
+}
+
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
