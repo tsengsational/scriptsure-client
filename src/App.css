@@ -17,6 +17,10 @@ body {
   opacity: .7;
 }*/
 
+#updated-button {
+  font-size: 1em;
+}
+
 #navbar {
   background: linear-gradient(270deg, #06beb6, #18a2f0, #db5640);
   background-size: 600% 600%;

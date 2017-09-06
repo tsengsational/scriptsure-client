@@ -1,7 +1,9 @@
 import React from 'react';
 import { Form, Grid, Divider } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
-export default class Login extends React.Component {
+class LoginContainer extends React.Component {
   constructor(){
     super()
     this.state={
@@ -19,6 +21,8 @@ export default class Login extends React.Component {
 
     handleSubmit = (event) => {
       event.preventDefault()
+      this.props.login(this.state, this.props.history)
+        // .then(()=>{this.props.history.push('/')})
     }
 
     render(){
@@ -29,15 +33,15 @@ export default class Login extends React.Component {
             <Grid.Column width={4}>
               <div>
                 <Form className="big-text cousine" onSubmit={this.handleSubmit}>
-                  <Form.Field name="username" type="text" onChange={this.handleChange}>
+                  <Form.Field name="username" onChange={this.handleChange}>
                     <label>Username</label>
                     <input type='text' name="username"/>
                   </Form.Field>
-                  <Form.Field name="password" type="password" onChange={this.handleChange}>
+                  <Form.Field name="password" onChange={this.handleChange}>
                     <label>Password</label>
                     <input type='password' name="password"/>
                   </Form.Field>
-                  <Form.Button className="big-text cousine">Login</Form.Button>
+                  <Form.Button id="updated-button">Login</Form.Button>
                 </Form>
               </div>
             </Grid.Column>
@@ -46,3 +50,6 @@ export default class Login extends React.Component {
       )
     }
 }
+
+
+export default connect(null, actions)(LoginContainer)

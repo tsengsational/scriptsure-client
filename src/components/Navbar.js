@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+
 
 class Navbar extends Component {
 
@@ -8,11 +11,15 @@ class Navbar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleClick = (event) => {
+    this.props.logout(this.props.history)
+  }
+
   render() {
     const { activeItem } = this.state
 
     return (
-      <Menu color={'teal'} id="navbar" inverted widths={4}>
+      <Menu color={'teal'} id="navbar" inverted>
         <Menu.Item className="big-text" name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
           <NavLink to="/" >Home</NavLink>
         </Menu.Item>
@@ -23,11 +30,11 @@ class Navbar extends Component {
           <NavLink to="/login">Login</NavLink>
         </Menu.Item>
         <Menu.Item className="big-text" name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
-          <NavLink to="/logout">Logout</NavLink>
+          <NavLink to="/" onClick={this.handleClick}>Logout</NavLink>
         </Menu.Item>
       </Menu>
     )
   }
 }
 
-export default Navbar
+export default connect(null, actions)(Navbar)

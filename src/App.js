@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import EditorContainer from './containers/EditorContainer'
 import HomeContainer from './containers/HomeContainer'
 import Navbar from './components/Navbar'
-import Login from './components/Login'
+import LoginContainer from './containers/LoginContainer'
+import SignUp from './containers/SignUpContainer'
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -14,9 +15,12 @@ class App extends Component {
         <Route exact path="/" render={(props)=>{
           return <HomeContainer history={props.history} />
         }} />
+        <Route exact path="/signup" render={(props) => {
+          return <SignUp history={props.history} />
+        }} />
         <Route exact path="/login" render ={(props) => {
-          return <Login history={props.history}/>
-        }}/>
+          return <LoginContainer history={props.history}/>
+        }} />
         <Route exact path="/scripts/:id" render={(props)=>{
           return <EditorContainer history={props.history} match={props.match} />
         }} />
