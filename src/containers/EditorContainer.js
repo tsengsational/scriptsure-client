@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, Entity, RichUtils, ContentState, CompositeDecorator, AtomicBlockUtils } from 'draft-js';
+import { Editor, EditorState, Entity, RichUtils, ContentState, CompositeDecorator, AtomicBlockUtils, getDefaultKeyBinding, KeyBindingUtil, convertToRaw, convertFromRaw } from 'draft-js';
 import { getSelectionRange, getSelectedBlockElement, getSelectionCoords } from '../utils/selection';
 import SideToolbar from './SideToolbar';
 import InlineToolbar from '../components/InlineToolbar';
-// import '../stylesheets/Draft.css'
-// import '../stylesheets/styles.css'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
+import '../stylesheets/Draft.css'
+import '../stylesheets/Editor.css'
+import '../stylesheets/styles.css'
+const {hasCommandModifier} = KeyBindingUtil;
 
+function myKeyBindingFn (event) {
+  if (event.keyCode === 83 /* `S` kay */ && hasCommandModifier(event)) {
+    return 'myeditor-save';
+  } else if (event.keyCode === 9) {
+    return 'myeditor-changeStyle'
+  }
+  return getDefaultKeyBinding(event)
+}
 
 class EditorContainer extends Component {
   constructor(props) {
@@ -13,7 +25,8 @@ class EditorContainer extends Component {
 
     this.state = {
       editorState: EditorState.createEmpty(),
-      inlineToolbar: { show: false }
+      inlineToolbar: { show: false },
+      version: {}
     };
 
     this.onChange = (editorState) => {
@@ -70,6 +83,41 @@ class EditorContainer extends Component {
     } // end blockStyler
   } // end constructor
 
+
+  componentDidMount(){
+    console.log('componentDidMount')
+
+    const script_id = this.props.match.params.id
+    this.props.getVersions(script_id)
+      .then(()=>{
+        console.log('setting most recent version')
+        if(this.props.script.versions.length > 0) {
+          const version = this.props.script.versions.slice(-1)[0]
+          const contentState = convertFromRaw(JSON.parse(version.contentState))
+          const editorState = EditorState.createWithContent(contentState)
+          this.setState({
+            editorState: editorState,
+            version: version
+          }, ()=> {console.log('set editorState:', this.state)})
+        }
+      }) //end then
+        .then(()=>{
+          if (Object.keys(this.props.version.currentVersion).length > 0){
+            const currentVersion = this.props.version.currentVersion
+            console.log('loading selected version', currentVersion)
+            const editorState = EditorState.createWithContent(convertFromRaw(JSON.parse(currentVersion.contentState)))
+            this.setState({
+              editorState: editorState,
+              version: currentVersion
+            }, () => {console.log('set editorState:', this.state)})
+          }
+        })
+  }
+
+  componentWillUnmount(){
+    console.log('EditorContainer Unmounting')
+  }
+
   _updateSelection() {
     const selectionRange = getSelectionRange();
     let selectedBlock;
@@ -89,7 +137,30 @@ class EditorContainer extends Component {
       this.onChange(newState);
       return true;
     }
+    switch (command){
+      case 'myeditor-save':
+        console.log(this.state)
+        const script_id = this.props.match.params.id
+        const contentState = this.state.editorState.getCurrentContent()
+        const stringify = this.stringifyContent(contentState)
+        let versionParams = { version: {
+          script_id: script_id,
+          contentState: stringify
+        }
+        }
+        this.props.saveVersion(versionParams)
+          .then(console.log(this.props.versions))
+        return 'handled';
+      case 'myeditor-changeStyle':
+        console.log("Tabbing")
+        return 'handled';
+    }
+
     return false;
+  }
+
+  stringifyContent = (contentState) => {
+    return JSON.stringify(convertToRaw(contentState))
   }
 
   _toggleBlockType(blockType) {
@@ -129,6 +200,12 @@ class EditorContainer extends Component {
     this.refs.fileInput.click();
   }
 
+  onTab = (event) => {
+    console.log("tab!")
+    event.preventDefault()
+  }
+
+
   render() {
     const { editorState, selectedBlock, selectionRange } = this.state;
     let sideToolbarOffsetTop = 0;
@@ -153,6 +230,7 @@ class EditorContainer extends Component {
             />
           : null
         }
+        {console.log(this.props)}
         {this.state.inlineToolbar.show
           ? <InlineToolbar
               editorState={editorState}
@@ -166,11 +244,13 @@ class EditorContainer extends Component {
           blockStyleFn={this.blockStyler}
           editorState={editorState}
           handleKeyCommand={this.handleKeyCommand}
+          keyBindingFn={myKeyBindingFn}
           onChange={this.onChange}
           placeholder="At rise..."
           spellCheck={true}
           readOnly={this.state.editingImage}
           ref="editor"
+          onTab={this.onTab}
         />
         <input type="file" ref="fileInput" style={{display: 'none'}}
           onChange={this.handleFileInput} />
@@ -179,4 +259,12 @@ class EditorContainer extends Component {
   }
 }
 
-export default EditorContainer;
+const mapStateToProps = (state) => {
+  return {
+    script: state.Script,
+    version: state.Version,
+    auth: state.Auth
+  }
+}
+
+export default connect(mapStateToProps, actions)(EditorContainer);

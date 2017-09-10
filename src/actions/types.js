@@ -1,2 +1,6 @@
 export const DID_LOG_IN = "did_log_in"
 export const DID_LOG_OUT = "did_log_out"
+export const ADD_VERSION = "add_version"
+export const ADD_SCRIPT = "add_script"
+export const GET_SCRIPT_VERSIONS = "get_script_versions"
+export const CURRENT_VERSION = "current_version"

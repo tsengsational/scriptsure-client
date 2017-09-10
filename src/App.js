@@ -4,7 +4,8 @@ import EditorContainer from './containers/EditorContainer'
 import HomeContainer from './containers/HomeContainer'
 import Navbar from './components/Navbar'
 import LoginContainer from './containers/LoginContainer'
-import SignUp from './containers/SignUpContainer'
+import SignUpContainer from './containers/SignUpContainer'
+import DashboardContainer from './containers/DashboardContainer'
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -16,10 +17,13 @@ class App extends Component {
           return <HomeContainer history={props.history} />
         }} />
         <Route exact path="/signup" render={(props) => {
-          return <SignUp history={props.history} />
+          return <SignUpContainer history={props.history} />
         }} />
         <Route exact path="/login" render ={(props) => {
           return <LoginContainer history={props.history}/>
+        }} />
+        <Route exact path="/dashboard" render={(props)=>{
+          return <DashboardContainer history={props.history}/>
         }} />
         <Route exact path="/scripts/:id" render={(props)=>{
           return <EditorContainer history={props.history} match={props.match} />

@@ -20,16 +20,16 @@ class Navbar extends Component {
 
     return (
       <Menu color={'teal'} id="navbar" inverted>
-        <Menu.Item className="big-text" name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
+        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
           <NavLink to="/" >Home</NavLink>
         </Menu.Item>
-        <Menu.Item className="big-text" name='sign up' active={activeItem === 'sign up'} onClick={this.handleItemClick}>
+        <Menu.Item name='sign up' active={activeItem === 'sign up'} onClick={this.handleItemClick}>
           <NavLink to="/signup">Sign Up</NavLink>
         </Menu.Item>
-        <Menu.Item className="big-text" name='login' active={activeItem === 'login'} onClick={this.handleItemClick}>
+        <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick}>
           <NavLink to="/login">Login</NavLink>
         </Menu.Item>
-        <Menu.Item className="big-text" name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
+        <Menu.Item name='logout' active={activeItem === 'logout'} onClick={this.handleItemClick}>
           <NavLink to="/" onClick={this.handleClick}>Logout</NavLink>
         </Menu.Item>
       </Menu>

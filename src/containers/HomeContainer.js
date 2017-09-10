@@ -15,8 +15,8 @@ export default class Home extends React.Component {
       <Divider hidden section />
       <Divider hidden section />
       <Grid>
-        <Grid.Row centered={true} >
-          <Grid.Column width={8}>
+        <Grid.Row centered={true} container >
+          <Grid.Column computer={8} mobile={14}>
             <Image style={{width: '50vw'}} src="/scriptsure_logo_white.svg"/>
             <Divider hidden section />
             <p className="cover-text" >Writing a play is hard enough without painful UX. With ScriptSure, write your next masterpiece, masterfully.</p>
@@ -27,7 +27,7 @@ export default class Home extends React.Component {
       <Grid centered={true}>
         <Grid.Row>
         <Grid.Column width={4} textAlign="center" >
-        <Link to="/scripts/1"><Button inverted color="teal" size="massive" >Get started</Button ></Link>
+        <Link to="/signup"><Button id="updated-button" inverted color="teal" size="massive" >Get started</Button ></Link>
         </Grid.Column>
         </Grid.Row>
       </Grid>

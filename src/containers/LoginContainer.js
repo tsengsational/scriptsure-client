@@ -32,7 +32,7 @@ class LoginContainer extends React.Component {
           <Grid centered columns={2}>
             <Grid.Column width={4}>
               <div>
-                <Form className="big-text cousine" onSubmit={this.handleSubmit}>
+                <Form className="cousine" onSubmit={this.handleSubmit}>
                   <Form.Field name="username" onChange={this.handleChange}>
                     <label>Username</label>
                     <input type='text' name="username"/>

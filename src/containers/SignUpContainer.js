@@ -30,7 +30,7 @@ export default class SignUpContainer extends React.Component {
       <div>
         <Divider hidden section />
         <Grid centered container>
-          <Form className="big-text cousine" onSubmit={this.handleSubmit}>
+          <Form className="cousine" onSubmit={this.handleSubmit}>
             <Form.Field onChange={this.handleChange}>
               <label>Username</label>
               <input type='text' name='username'/>
