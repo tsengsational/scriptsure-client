@@ -40,7 +40,7 @@ export function currentUser(){
         dispatch(didLogIn(json))
         console.log('got current user')
       })
-      .catch(err = console.log(err))
+      .catch(err => console.log(err))
   }
 }
 
