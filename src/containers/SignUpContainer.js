@@ -38,6 +38,7 @@ export default class SignUpContainer extends React.Component {
       .then(()=>{
         history.push('/login')
       })
+      .catch(error => {console.log(error)})
   }
 
   render(){
