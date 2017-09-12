@@ -8,6 +8,7 @@ import {
   ADD_SCRIPT,
   GET_SCRIPT_VERSIONS,
   CURRENT_VERSION,
+  SET_CHARACTERS
 } from './types.js'
 
 export function login (loginParams, history) {
@@ -39,7 +40,7 @@ export function currentUser(){
         dispatch(didLogIn(json))
         console.log('got current user')
       })
-      .catch(err => console.log(err))
+      .catch(err = console.log(err))
   }
 }
 
@@ -107,6 +108,13 @@ export function setCurrentVersion(version){
   }
 }
 
+export function getCharacters(characters){
+  console.log('getting current characters')
+  return function (dispatch) {
+    console.log('setting current characters')
+    return dispatch(setCharacters(characters))
+  }
+}
 
 // Dispatch actions:
 
@@ -148,6 +156,13 @@ export function getScriptVersions (data) {
 export function currentVersion (data) {
   return {
     type: CURRENT_VERSION,
+    payload: data
+  }
+}
+
+export function setCharacters (data) {
+  return {
+    type: SET_CHARACTERS,
     payload: data
   }
 }

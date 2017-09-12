@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import ToolbarIcon from '../components/ToolbarIcon';
 
 const BLOCK_TYPES = [
-  { label: 'H1', style: 'header-one' },
-  { label: 'H2', style: 'header-two' },
-  { icon: 'a-unordered-list', style: 'unordered-list-item' },
-  { icon: 'a-ordered-list', style: 'ordered-list-item' },
-  { icon: 'a-quote', style: 'blockquote' },
-  { label: 'Act', style: 'act' }
+  { label: 'Act', style: 'act' },
+  { label: 'Scene', style: 'scene'},
+  { label: 'Action', style: 'action'},
+  { label: 'Char', style: 'character'},
+  { icon: 'a-quote', style: 'dialogue'}
 ];
 
 const SideToolbarExtras = ({ editorState, onToggle }) => {

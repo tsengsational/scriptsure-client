@@ -9,12 +9,12 @@ body {
 }
 
 div.scroll {
-  height: 500px;
+  height: 52vh;
   overflow-y: auto;
 }
 
 div.scroll2 {
-  height: 80vh;
+  height: 60vh;
   overflow-y: auto;
 }
 

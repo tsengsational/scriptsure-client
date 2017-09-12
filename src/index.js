@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'semantic-ui-css/semantic.css';
+import './stylesheets/semantic-ui-css/semantic.css';
 import './index.css';
 import './App.css';
 // import './stylesheets/Draft.css'

@@ -1,33 +1,33 @@
-.RichEditor-root {
-  background: #fff;
-  border: 1px solid #ddd;
-  font-family: 'Georgia', serif;
-  font-size: 14px;
+.DraftEditor-root {
+  /*background: #fff;*/
+  /*border: 1px solid #ddd;*/
+  font-family: 'Cousine', monospace;
+  font-size: 1.15em;
   padding: 15px;
 }
 
-.RichEditor-editor {
+.DraftEditor-editor {
   border-top: 1px solid #ddd;
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
 }
 
-.RichEditor-editor .public-DraftEditorPlaceholder-root,
-.RichEditor-editor .public-DraftEditor-content {
+.DraftEditor-editor .public-DraftEditorPlaceholder-root,
+.DraftEditor-editor .public-DraftEditor-content {
   margin: 0 -15px -15px;
   padding: 15px;
 }
 
-.RichEditor-editor .public-DraftEditor-content {
+.DraftEditor-editor .public-DraftEditor-content {
   min-height: 100px;
 }
 
-.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+.DraftEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
   display: none;
 }
 
-.RichEditor-editor .RichEditor-blockquote {
+.DraftEditor-editor .DraftEditor-blockquote {
   border-left: 5px solid #eee;
   color: #666;
   font-family: 'Hoefler Text', 'Georgia', serif;
@@ -36,21 +36,21 @@
   padding: 10px 20px;
 }
 
-.RichEditor-editor .public-DraftStyleDefault-pre {
+.DraftEditor-editor .public-DraftStyleDefault-pre {
   background-color: rgba(0, 0, 0, 0.05);
   font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
   font-size: 16px;
   padding: 20px;
 }
 
-.RichEditor-controls {
+.DraftEditor-controls {
   font-family: 'Helvetica', sans-serif;
   font-size: 14px;
   margin-bottom: 5px;
   user-select: none;
 }
 
-.RichEditor-styleButton {
+.DraftEditor-styleButton {
   color: #999;
   cursor: pointer;
   margin-right: 16px;
@@ -58,31 +58,50 @@
   display: inline-block;
 }
 
-.RichEditor-activeButton {
+.DraftEditor-activeButton {
   color: #5890ff;
 }
+
 /* CUSTOM BLOCK STYLES */
 
-.RichEditor-editor .RichEditor-act {
-  text-align: center;
+div.RichEditor-act {
   text-decoration: underline;
   text-transform: uppercase;
   margin-top: 24px;
+  display: inline !important;
+  font-size: 1.25em !important;
 }
 
-.RichEditor-editor .RichEditor-scene {
-  text-align: center;
+div.RichEditor-scene {
   text-decoration: underline;
-  margin-top: 18px;
+  margin-top: 5px;
+  font-size: 1.25em !important;
 }
 
-.RichEditor-editor .RichEditor-character  {
+div.RichEditor-character  {
+  text-align: center;
   text-transform: uppercase;
   margin-top: 12px;
 }
 
-.RichEditor-editor .RichEditor-dialogue {
-  margin-left: 27px;
-  margin-right: 27px;
+div.RichEditor-dialogue {
+  margin-left: 20%;
+  margin-right: 20%;
   margin-top: 6px;
+}
+
+div.RichEditor-action {
+  margin-top: 16px;
+}
+
+/* CUSTOM EDITOR ELEMENT CSS */
+
+div.display-type {
+  color: #808080;
+  height: 20px;
+  padding: 15px;
+  text-align: center;
+  position: fixed;
+  left: 85%;
+  z-index: 2;
 }
