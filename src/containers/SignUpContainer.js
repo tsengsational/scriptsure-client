@@ -35,6 +35,9 @@ export default class SignUpContainer extends React.Component {
       }
     }
     UsersAdapter.create(userParams)
+      .then(()=>{
+        history.push('/login')
+      })
   }
 
   render(){
