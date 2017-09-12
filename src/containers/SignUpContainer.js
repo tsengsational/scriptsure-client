@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Grid, Divider } from 'semantic-ui-react'
+import UsersAdapter from '../adapters/UsersAdapter'
 
 export default class SignUpContainer extends React.Component {
   constructor(){
@@ -23,6 +24,17 @@ export default class SignUpContainer extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    const userParams = {
+      user: {
+        username: this.state.username,
+        first_name: this.state.firstName,
+        last_name: this.state.lastName,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirmation,
+        email: this.state.email
+      }
+    }
+    UsersAdapter.create(userParams)
   }
 
   render(){
