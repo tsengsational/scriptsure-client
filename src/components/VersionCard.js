@@ -26,7 +26,7 @@ class VersionCard extends React.Component {
           <Card className="width width2 width3" centered link>
             <Card.Content>
               <Card.Header>
-              <Icon name='copy'/>
+              <Icon name='copy' floated="left"/>
                 {this.props.version.created_at}
               </Card.Header>
             </Card.Content>

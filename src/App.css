@@ -18,6 +18,24 @@ div.scroll2 {
   overflow-y: auto;
 }
 
+div#navbar.ui {
+  border-radius: 0;
+}
+
+div.segment.no-bottom-radius {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+div.segment.no-top-radius {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+div.segment.no-margin.no-margin2.no-bottom-radius.no-top-radius.text-center {
+  text-align: center;
+}
+
 span.h3 {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     line-height: 1.5em;

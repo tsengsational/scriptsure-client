@@ -44,18 +44,18 @@ class VersionsDashContainer extends React.Component {
     return (
       <div className="hide-scroll">
         <Transition visible={this.state.visible} animation='fade down' >
-          <Segment color='teal' textAlign="center">
+          <Segment className="no-bottom-radius" color='teal' textAlign="center">
             <span className="h3">Versions:</span>
-            <Button floated="right" basic color={'teal'} onClick={this.hideVersions}>Hide</Button>
+            <Button floated="right" id="updated-button" basic color={'teal'} onClick={this.hideVersions}>Hide</Button>
           </Segment>
         </Transition>
         <Transition visible={this.state.visible} animation='fade down' >
           <div>
-            <Segment className="no-margin no-margin2">
+            <Segment className="no-margin no-margin2 no-bottom-radius no-top-radius text-center">
               <h3>{this.props.script.title}</h3>
               {this.props.script.subtitle}
             </Segment>
-            <Segment className="no-top-margin">
+            <Segment className="no-top-margin no-top-radius">
               <div className="scroll2">
                   <div>
                       <Divider hidden/>

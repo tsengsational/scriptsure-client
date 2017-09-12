@@ -69,12 +69,12 @@ class DashboardContainer extends React.Component {
             <h3><Icon name='user circle'/> Username: {username}</h3>
             </Segment>
             <PlayFormModal open={this.state.playModalOpen} submit={this.handlePlaySubmit} click={this.handleModalClick} />
-            <Segment color="teal" >
+            <Segment className="no-bottom-radius" color="teal" >
               <span className="h3">Your Plays</span>   <Button floated="right" id="updated-button" basic color={"teal"} onClick={this.handlePlayClick}>
                 <Icon name='add circle' /> New Play
               </Button>
             </Segment>
-            <Segment className="no-top-margin">
+            <Segment className="no-top-margin no-top-radius">
               <ScriptList script={this.props.script} scripts={this.props.auth.scripts} history={this.props.history}/>
             </Segment>
           </Grid.Column>
