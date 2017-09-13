@@ -10,6 +10,7 @@ import '../stylesheets/Editor.css'
 import '../stylesheets/styles.css'
 import { Map } from 'immutable'
 import { TypeaheadEditor} from 'draft-js-typeahead';
+import characters from '../components/characters'
 
 const {hasCommandModifier} = KeyBindingUtil;
 
