@@ -9,6 +9,8 @@ import '../stylesheets/Draft.css'
 import '../stylesheets/Editor.css'
 import '../stylesheets/styles.css'
 import { Map } from 'immutable'
+import { TypeaheadEditor} from 'draft-js-typeahead';
+
 const {hasCommandModifier} = KeyBindingUtil;
 
 function myKeyBindingFn (event) {
