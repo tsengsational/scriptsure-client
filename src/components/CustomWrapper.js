@@ -1,3 +1,5 @@
+import React from 'react'
+
 export class SceneBlock extends React.Component {
   constructor(props) {
     super(props);

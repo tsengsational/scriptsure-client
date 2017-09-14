@@ -95,6 +95,10 @@ div.RichEditor-action {
   margin-top: 16px;
 }
 
+div.RichEditor-parenthetical {
+  text-align: center;
+}
+
 /* CUSTOM EDITOR ELEMENT CSS */
 
 div.display-type {
@@ -102,8 +106,8 @@ div.display-type {
   height: 20px;
   padding: 15px;
   text-align: center;
-  position: absolute;
-  left: 5%;
+  position: fixed;
+  left: 85%;
   z-index: 3;
 }
 

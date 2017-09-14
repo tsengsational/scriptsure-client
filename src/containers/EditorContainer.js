@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, Entity, RichUtils, ContentState, CompositeDecorator, AtomicBlockUtils, getDefaultKeyBinding, KeyBindingUtil, convertToRaw, convertFromRaw, DefaultDraftBlockRenderMap } from 'draft-js';
+import { Editor, EditorState, Entity, RichUtils, ContentState, CompositeDecorator, AtomicBlockUtils, getDefaultKeyBinding, KeyBindingUtil, convertToRaw, convertFromRaw } from 'draft-js';
 import { getSelectionRange, getSelectedBlockElement, getSelectionCoords } from '../utils/selection';
 import SideToolbar from './SideToolbar';
 import InlineToolbar from '../components/InlineToolbar';
@@ -11,6 +11,7 @@ import '../stylesheets/styles.css'
 import { Map } from 'immutable'
 import Outline from '../components/Outline'
 import { Button, Transition, Grid } from 'semantic-ui-react'
+import extendedBlockRenderMap from '../components/BlockRenderMap'
 
 const {hasCommandModifier} = KeyBindingUtil;
 
@@ -23,25 +24,6 @@ function myKeyBindingFn (event) {
   }
   return getDefaultKeyBinding(event)
 }
-
-const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
-  act: {
-    element: 'div'
-  },
-  scene: {
-    element: 'div'
-  },
-  character: {
-    element: 'div'
-  },
-  dialogue: {
-    element: 'div'
-  },
-  action: {
-    element: 'div'
-  }
-})
-)
 
 function blockStyler(block) {
   const type = block.getType();
@@ -58,6 +40,8 @@ function blockStyler(block) {
       return 'RichEditor-dialogue';
     case 'action':
       return 'RichEditor-action';
+    case 'parenthetical':
+      return 'RichEditor-parenthetical';
     default:
       return null;
   }
@@ -229,6 +213,8 @@ class EditorContainer extends Component {
     } else if (type === 'action') {
       this.toggleBlockType('character')
     } else if (type === 'character') {
+      this.toggleBlockType('parenthetical')
+    } else if (type === 'parenthetical') {
       this.toggleBlockType('dialogue')
     } else if (type === 'dialogue') {
       this.toggleBlockType('action')

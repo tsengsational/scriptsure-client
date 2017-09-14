@@ -2,8 +2,8 @@ import React from 'react'
 import { Menu, Icon } from 'semantic-ui-react'
 
 const Outline = (props) => {
-  const outline = props.outline.map((entry) => {
-    return <div><a href={'#'.concat(entry)}>{entry}</a><br/></div>
+  const outline = props.outline.map((entry, index) => {
+    return <div><a href={'#'.concat(entry).concat('-').concat(index)}>{entry}</a><br/></div>
   })
 
 

@@ -6,7 +6,8 @@ const BLOCK_TYPES = [
   { label: 'Scene', style: 'scene'},
   { label: 'Action', style: 'action'},
   { label: 'Char', style: 'character'},
-  { icon: 'a-quote', style: 'dialogue'}
+  { icon: 'a-quote', style: 'dialogue'},
+  { label: '( )', style: 'parenthetical'}
 ];
 
 const SideToolbarExtras = ({ editorState, onToggle }) => {
