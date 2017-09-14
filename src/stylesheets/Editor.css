@@ -4,7 +4,7 @@
   font-family: 'Cousine', monospace;
   font-size: 1.15em;
   padding: 15px;
-  margin: 0 0 50vh;
+  margin: 0;
 }
 
 .DraftEditor-editor {
@@ -102,7 +102,37 @@ div.display-type {
   height: 20px;
   padding: 15px;
   text-align: center;
-  position: fixed;
-  left: 85%;
-  z-index: 2;
+  position: absolute;
+  left: 5%;
+  z-index: 3;
 }
+
+.editor {
+        min-height: 80;
+        padding: 10;
+        border: '1px solid #ccc';
+      }
+
+.typeahead {
+        margin: 0;
+        padding: 0;
+        border: '1px solid #ccc';
+        background: 'white';
+        box-shadow: '0 0 0 1px rgba(0, 0, 0, .1), 0 1px 10px rgba(0, 0, 0, .35)';
+        border-radius: 3;
+        list-style-type: 'none';
+      };
+.person {
+        margin: 0;
+        padding: '16px 24px';
+      };
+.selectedPerson {
+        margin: 0;
+        padding: '16px 24px';
+        background: 'DarkOrchid';
+        color: 'white';
+      };
+.mention {
+        background: 'DarkOrchid';
+        color: 'white';
+      }

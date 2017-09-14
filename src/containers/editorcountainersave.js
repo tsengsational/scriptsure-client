@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Editor, EditorState, Entity, RichUtils, ContentState, CompositeDecorator, AtomicBlockUtils, getDefaultKeyBinding, KeyBindingUtil, convertToRaw, convertFromRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, getDefaultKeyBinding, KeyBindingUtil, convertToRaw, convertFromRaw, DefaultDraftBlockRenderMap } from 'draft-js';
 import { getSelectionRange, getSelectedBlockElement, getSelectionCoords } from '../utils/selection';
 import SideToolbar from './SideToolbar';
 import InlineToolbar from '../components/InlineToolbar';
@@ -8,16 +8,41 @@ import * as actions from '../actions'
 import '../stylesheets/Draft.css'
 import '../stylesheets/Editor.css'
 import '../stylesheets/styles.css'
+import { Map } from 'immutable'
+import { extendedBlockRenderMap } from '../components/BlockRenderMap'
+// import Editor from 'draft-js-plugins-editor'
 const {hasCommandModifier} = KeyBindingUtil;
 
 function myKeyBindingFn (event) {
   if (event.keyCode === 83 /* `S` kay */ && hasCommandModifier(event)) {
     return 'myeditor-save';
-  } else if (event.keyCode === 9) {
-    return 'myeditor-changeStyle'
+  }
+  else if (event.keyCode === 13 && hasCommandModifier(event)) {
+    return 'myeditor-return'
   }
   return getDefaultKeyBinding(event)
 }
+
+
+function blockStyler(block) {
+  const type = block.getType();
+  switch (block.getType()){
+    case 'unstyled':
+      return 'paragraph';
+    case 'act':
+      return 'RichEditor-act';
+    case 'scene':
+      return 'RichEditor-scene';
+    case 'character':
+      return 'RichEditor-character';
+    case 'dialogue':
+      return 'RichEditor-dialogue';
+    case 'action':
+      return 'RichEditor-action';
+    default:
+      return null;
+  }
+} // end blockStyler
 
 class EditorContainer extends Component {
   constructor(props) {
@@ -26,7 +51,10 @@ class EditorContainer extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       inlineToolbar: { show: false },
-      version: {}
+      blockType: '',
+      displayTypeVisible: false,
+      acts: [],
+      scenes: []
     };
 
     this.onChange = (editorState) => {
@@ -57,30 +85,7 @@ class EditorContainer extends Component {
     this.toggleBlockType = (type) => this._toggleBlockType(type);
     this.toggleInlineStyle = (style) => this._toggleInlineStyle(style);
     this.insertImage = (file) => this._insertImage(file);
-    // this.blockRenderer = (block) => {
-    //   if (block.getType() === 'atomic') {
-    //     return {
-    //       component: ImageComponent
-    //     };
-    //   }
-    //   return null;
-    // }
-    this.blockStyler = (block) => {
-      switch (block.getType()){
-        case 'unstyled':
-          return 'paragraph';
-        case 'act':
-          return 'RichEditor-act';
-        case 'scene':
-          return 'RichEditor-scene';
-        case 'character':
-          return 'RichEditor-character';
-        case 'dialogue':
-          return 'RichEditor-dialogue';
-        default:
-          return null;
-      }
-    } // end blockStyler
+
   } // end constructor
 
 
@@ -112,6 +117,10 @@ class EditorContainer extends Component {
             }, () => {console.log('set editorState:', this.state)})
           }
         })
+        .then(()=>{
+          this.getCharacters()
+          this.getActs()
+        })
   }
 
   componentWillUnmount(){
@@ -131,6 +140,7 @@ class EditorContainer extends Component {
   }
 
   _handleKeyCommand(command) {
+    console.log(command)
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -151,8 +161,12 @@ class EditorContainer extends Component {
         this.props.saveVersion(versionParams)
           .then(console.log(this.props.versions))
         return 'handled';
-      case 'myeditor-changeStyle':
-        console.log("Tabbing")
+      case 'myeditor-return':
+        RichUtils.handleKeyCommand(editorState, 'split-block')
+        if (this.state.blockType === 'character') {
+          this.toggleBlockType('dialogue')
+        }
+        console.log("return", editorState, command)
         return 'handled';
     }
 
@@ -164,6 +178,9 @@ class EditorContainer extends Component {
   }
 
   _toggleBlockType(blockType) {
+    this.setState({
+      blockType: blockType,
+    })
     this.onChange(
       RichUtils.toggleBlockType(
         this.state.editorState,
@@ -181,30 +198,44 @@ class EditorContainer extends Component {
     );
   }
 
-  _insertImage(file) {
-    const entityKey = Entity.create('atomic', 'IMMUTABLE', {src: URL.createObjectURL(file)});
-		this.onChange(AtomicBlockUtils.insertAtomicBlock(
-        this.state.editorState,
-        entityKey,
-        ' '
-      ));
-  }
-
-  _handleFileInput(e) {
-    const fileList = e.target.files;
-    const file = fileList[0];
-    this.insertImage(file);
-  }
-
-  _handleUploadImage() {
-    this.refs.fileInput.click();
-  }
-
   onTab = (event) => {
-    console.log("tab!")
     event.preventDefault()
+    const type = this.state.blockType
+    console.log(type)
+    if (type === '') {
+      this.toggleBlockType('act')
+    } else if (type === 'act'){
+      this.toggleBlockType('scene')
+    } else if (type === 'scene') {
+      this.toggleBlockType('action')
+    } else if (type === 'action') {
+      this.toggleBlockType('character')
+    } else if (type === 'character') {
+      this.toggleBlockType('dialogue')
+    } else if (type === 'dialogue') {
+      this.toggleBlockType('action')
+    }
   }
 
+  getCharacters = () => {
+    console.log("getting Characters")
+    const charElements = [...document.getElementsByClassName('RichEditor-character')]
+    const characters = charElements.map((element) =>{
+      return element.firstChild.innerText
+    })
+    const unique = characters.filter((v, i, a) => a.indexOf(v) === i)
+  }
+
+  getActs = () => {
+    console.log("getting Acts")
+    const actElements = [...document.getElementsByClassName('RichEditor-act')]
+    actElements.forEach((act)=> {
+      let link = document.createElement('a')
+      let name = act.innerText
+      link.setAttribute('name', name)
+      act.appendChild(link)
+    })
+  }
 
   render() {
     const { editorState, selectedBlock, selectionRange } = this.state;
@@ -217,6 +248,11 @@ class EditorContainer extends Component {
 
       sideToolbarOffsetTop = (blockBounds.bottom - editorBounds.top)
                            - 31; // height of side toolbar
+    }
+
+    let displayType = null
+    if (this.state.displayTypeVisible) {
+      displayType = <div  className="display-type">{this.state.blockType}</div>
     }
 
     return (
@@ -239,9 +275,10 @@ class EditorContainer extends Component {
             />
           : null
         }
+        {displayType}
+        <div  className="display-type">{this.state.blockType}</div>
         <Editor
-          blockRendererFn={this.blockRenderer}
-          blockStyleFn={this.blockStyler}
+          blockStyleFn={blockStyler}
           editorState={editorState}
           handleKeyCommand={this.handleKeyCommand}
           keyBindingFn={myKeyBindingFn}
@@ -251,9 +288,8 @@ class EditorContainer extends Component {
           readOnly={this.state.editingImage}
           ref="editor"
           onTab={this.onTab}
+          blockRenderMap={extendedBlockRenderMap}
         />
-        <input type="file" ref="fileInput" style={{display: 'none'}}
-          onChange={this.handleFileInput} />
       </div>
     );
   }

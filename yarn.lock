@@ -2026,14 +2026,16 @@ draft-js-mention-plugin@beta:
     prop-types "^15.5.8"
     union-class-names "^1.0.0"
 
-draft-js-plugins-editor@beta:
-  version "2.0.0-rc5"
-  resolved "https://registry.yarnpkg.com/draft-js-plugins-editor/-/draft-js-plugins-editor-2.0.0-rc5.tgz#fec39ae480f94fb7f01247a1236eb3c67175a3e4"
+draft-js-plugins-editor@^2.0.0-beta1:
+  version "2.0.0-beta1"
+  resolved "https://registry.yarnpkg.com/draft-js-plugins-editor/-/draft-js-plugins-editor-2.0.0-beta1.tgz#184e0c3579bffeb4b18b8b65a172ffdfce110d04"
   dependencies:
     decorate-component-with-props "^1.0.2"
+    draft-js ">=0.7.0"
     find-with-regex "^1.0.2"
-    immutable "^3.7.4"
-    prop-types "^15.5.8"
+    immutable ">=3.8.1"
+    react ">=15.1.0"
+    react-dom ">=15.1.0"
     union-class-names "^1.0.0"
 
 draft-js-typeahead@^0.1.1:
@@ -2045,7 +2047,7 @@ draft-js-typeahead@^0.1.1:
     react "^0.14.7"
     react-dom "^0.14.7"
 
-draft-js@^0.10.1:
+draft-js@>=0.7.0, draft-js@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/draft-js/-/draft-js-0.10.1.tgz#6f1219d8095729691429ca6fd7a58d2a8be5cb67"
   dependencies:
@@ -3202,7 +3204,7 @@ ignore@^3.3.3:
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.5.tgz#c4e715455f6073a8d7e5dae72d2fc9d71663dba6"
 
-immutable@^3.7.4, immutable@^3.7.6, immutable@^3.8.1:
+immutable@>=3.8.1, immutable@^3.7.6, immutable@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
 
@@ -5266,11 +5268,7 @@ react-dev-utils@^4.0.0:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^0.14.7:
-  version "0.14.9"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.9.tgz#05064a3dcf0fb1880a3b2bfc9d58c55d8d9f6293"
-
-"react-dom@^15 || ^16", react-dom@^15.6.1:
+react-dom@>=15.1.0, "react-dom@^15 || ^16", react-dom@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.1.tgz#2cb0ed4191038e53c209eb3a79a23e2a4cf99470"
   dependencies:
@@ -5278,6 +5276,10 @@ react-dom@^0.14.7:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react-dom@^0.14.7:
+  version "0.14.9"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-0.14.9.tgz#05064a3dcf0fb1880a3b2bfc9d58c55d8d9f6293"
 
 react-error-overlay@^2.0.0:
   version "2.0.0"
@@ -5372,14 +5374,7 @@ react-video-cover@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-video-cover/-/react-video-cover-1.1.0.tgz#312da272436bfa5301fa098af57cbdf565a8fe89"
 
-react@^0.14.7:
-  version "0.14.9"
-  resolved "https://registry.yarnpkg.com/react/-/react-0.14.9.tgz#9110a6497c49d44ba1c0edd317aec29c2e0d91d1"
-  dependencies:
-    envify "^3.0.0"
-    fbjs "^0.6.1"
-
-"react@^15 || ^16", react@^15.6.1:
+react@>=15.1.0, "react@^15 || ^16", react@^15.6.1:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/react/-/react-15.6.1.tgz#baa8434ec6780bde997cdc380b79cd33b96393df"
   dependencies:
@@ -5388,6 +5383,13 @@ react@^0.14.7:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "^15.5.10"
+
+react@^0.14.7:
+  version "0.14.9"
+  resolved "https://registry.yarnpkg.com/react/-/react-0.14.9.tgz#9110a6497c49d44ba1c0edd317aec29c2e0d91d1"
+  dependencies:
+    envify "^3.0.0"
+    fbjs "^0.6.1"
 
 read-all-stream@^3.0.0:
   version "3.1.0"

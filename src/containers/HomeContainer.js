@@ -7,7 +7,7 @@ export default class Home extends React.Component {
 
   render(){
     return(
-    <div className="centered" >
+    <div className="centered" id="home" >
       <div id="mask"></div>
       <VideoBackground />
       <Divider hidden section />

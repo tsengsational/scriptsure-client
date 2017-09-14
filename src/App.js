@@ -13,6 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar/>
+        <div className="navbar-mask"/>
         <Route exact path="/" render={(props)=>{
           return <HomeContainer history={props.history} />
         }} />

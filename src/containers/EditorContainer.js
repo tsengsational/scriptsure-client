@@ -9,8 +9,8 @@ import '../stylesheets/Draft.css'
 import '../stylesheets/Editor.css'
 import '../stylesheets/styles.css'
 import { Map } from 'immutable'
-import { TypeaheadEditor} from 'draft-js-typeahead';
-import characters from '../components/characters'
+import Outline from '../components/Outline'
+import { Button, Transition, Grid } from 'semantic-ui-react'
 
 const {hasCommandModifier} = KeyBindingUtil;
 
@@ -45,24 +45,13 @@ const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
 
 function blockStyler(block) {
   const type = block.getType();
-  // if ( type === 'unstyled') {
-  //   return 'paragraph'
-  // } else if ( type === 'act') {
-  //   return 'RichEditor-act'
-  // } else if ( type === 'scene') {
-  //   return 'RichEditor-scene'
-  // } else if ( type === 'character') {
-  //   return 'RichEditor-character'
-  // } else if ( type === 'dialogue') {
-  //   return 'RichEditor-dialogue'
-  // }
   switch (block.getType()){
     case 'unstyled':
       return 'paragraph';
     case 'act':
-      return 'RichEditor-act';
+      return 'RichEditor-act outliner';
     case 'scene':
-      return 'RichEditor-scene';
+      return 'RichEditor-scene outliner';
     case 'character':
       return 'RichEditor-character';
     case 'dialogue':
@@ -83,6 +72,7 @@ class EditorContainer extends Component {
       inlineToolbar: { show: false },
       blockType: '',
       displayTypeVisible: false,
+      outline: [],
     };
 
     this.onChange = (editorState) => {
@@ -147,6 +137,7 @@ class EditorContainer extends Component {
         })
         .then(()=>{
           this.getCharacters()
+          this.getOutline()
         })
   }
 
@@ -251,8 +242,25 @@ class EditorContainer extends Component {
       return element.firstChild.innerText
     })
     const unique = characters.filter((v, i, a) => a.indexOf(v) === i)
-    debugger
   }
+
+  getOutline = () => {
+    console.log("getting Acts")
+    const oulineElements = [...document.getElementsByClassName('outliner')]
+    oulineElements.forEach((act, index)=> {
+      let link = document.createElement('a')
+      let name = act.firstChild.firstChild.firstChild.innerText
+      link.setAttribute('name', name.concat('-').concat(index))
+      act.appendChild(link)
+    })
+    const outline = oulineElements.map((element) => {
+      return element.firstChild.firstChild.firstChild.innerText
+    })
+    this.setState({
+      outline: outline
+    })
+  }
+
 
   render() {
     const { editorState, selectedBlock, selectionRange } = this.state;
@@ -274,39 +282,50 @@ class EditorContainer extends Component {
 
     return (
       <div className="editor" id="richEditor" onClick={this.focus}>
-        {selectedBlock
-          ? <SideToolbar
+        <Grid columns={3}>
+          <Grid.Column width={3}>
+            <Outline outline={this.state.outline} />
+          </Grid.Column>
+          <Grid.Column width={10}>
+            {selectedBlock
+              ? <SideToolbar
+                  editorState={editorState}
+                  style={{ top: sideToolbarOffsetTop }}
+                  onToggle={this.toggleBlockType}
+                  onUploadImage={this.handleUploadImage}
+                />
+              : null
+            }
+            {console.log(this.props)}
+            {this.state.inlineToolbar.show
+              ? <InlineToolbar
+                  editorState={editorState}
+                  onToggle={this.toggleInlineStyle}
+                  position={this.state.inlineToolbar.position}
+                />
+              : null
+            }
+
+            <Editor
+              blockStyleFn={blockStyler}
               editorState={editorState}
-              style={{ top: sideToolbarOffsetTop }}
-              onToggle={this.toggleBlockType}
-              onUploadImage={this.handleUploadImage}
+              handleKeyCommand={this.handleKeyCommand}
+              keyBindingFn={myKeyBindingFn}
+              onChange={this.onChange}
+              placeholder="At rise..."
+              spellCheck={true}
+              readOnly={this.state.editingImage}
+              ref="editor"
+              onTab={this.onTab}
+              blockRenderMap={extendedBlockRenderMap}
             />
-          : null
-        }
-        {console.log(this.props)}
-        {this.state.inlineToolbar.show
-          ? <InlineToolbar
-              editorState={editorState}
-              onToggle={this.toggleInlineStyle}
-              position={this.state.inlineToolbar.position}
-            />
-          : null
-        }
-        {displayType}
-        <div  className="display-type">{this.state.blockType}</div>
-        <Editor
-          blockStyleFn={blockStyler}
-          editorState={editorState}
-          handleKeyCommand={this.handleKeyCommand}
-          keyBindingFn={myKeyBindingFn}
-          onChange={this.onChange}
-          placeholder="At rise..."
-          spellCheck={true}
-          readOnly={this.state.editingImage}
-          ref="editor"
-          onTab={this.onTab}
-          blockRenderMap={extendedBlockRenderMap}
-        />
+          </Grid.Column>
+          <Grid.Column width={3}>
+            {displayType}
+            <div className="display-type">{this.state.blockType}</div>
+          </Grid.Column>
+
+        </Grid>
       </div>
     );
   }

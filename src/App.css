@@ -8,6 +8,17 @@ body {
   background-color: transparent !important;
 }
 
+div.outline {
+  position: fixed;
+  height: 100%;
+  left: 5%;
+  color: gray;
+  overflow-y: auto;
+  font-size: .9em;
+  width: 18vw;
+  font-family: 'Cousine', monospace;
+}
+
 div.scroll {
   height: 52vh;
   overflow-y: auto;
@@ -20,6 +31,23 @@ div.scroll2 {
 
 div#navbar.ui {
   border-radius: 0;
+  position: fixed;
+  width: 100%;
+  left: 0%;
+  top: 0%;
+
+}
+
+div.navbar-mask {
+  background-color: white;
+  border-radius: 0;
+  position: fixed;
+  width: 100%;
+  left: 0% !important;
+  top: 0% !important;
+  opacity: 1;
+  z-index: 10;
+  height: 3.1em;
 }
 
 div.segment.no-bottom-radius {
@@ -71,16 +99,28 @@ div.ui.segment.no-margin.no-margin2 {
   font-family: 'Cousine', monospace !important;
 }
 
+#home {
+  z-index: 11;
+}
+
 #navbar {
   background: linear-gradient(270deg, #06beb6, #18a2f0, #db5640);
   background-size: 600% 600%;
   opacity: .6;
   top: -10vh;
   left: -10vw;
-  z-Index: -1;
+  z-index: 13;
   -webkit-animation: GradientNavbar 30s ease infinite;
   -moz-animation: GradientNavbar 30s ease infinite;
   animation: GradientNavbar 30s ease infinite;
+}
+
+div.eight.wide.computer.fourteen.wide.mobile.column {
+  z-index: 12;
+}
+
+div.center.aligned.four.wide.column {
+  z-index: 12;
 }
 
 #mask {
@@ -92,7 +132,7 @@ div.ui.segment.no-margin.no-margin2 {
   position: fixed;
   top: -10vh;
   left: -10vw;
-  z-Index: -1;
+  z-Index: 12;
   -webkit-animation: Gradient 30s ease infinite;
   -moz-animation: Gradient 30s ease infinite;
   animation: Gradient 30s ease infinite;

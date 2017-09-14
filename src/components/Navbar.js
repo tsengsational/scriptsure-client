@@ -19,7 +19,7 @@ class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu color={'teal'} id="navbar" inverted>
+      <Menu color={'teal'} id="navbar" inverted >
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
           <NavLink to="/" >Home</NavLink>
         </Menu.Item>

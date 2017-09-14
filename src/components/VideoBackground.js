@@ -8,7 +8,7 @@ const style = {
   margin: 'auto',
   top: '-5vh',
   left: '-5vw',
-  zIndex: -2,
+  zIndex: 11,
 };
 class VideoBackground extends Component {
 

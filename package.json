@@ -8,7 +8,7 @@
     "draft-js": "^0.10.1",
     "draft-js-editor": "^1.10.0",
     "draft-js-mention-plugin": "beta",
-    "draft-js-plugins-editor": "beta",
+    "draft-js-plugins-editor": "^2.0.0-beta1",
     "draft-js-typeahead": "^0.1.1",
     "es6-shim": "^0.35.3",
     "react": "^15.6.1",
