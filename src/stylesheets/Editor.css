@@ -65,7 +65,7 @@
 
 /* CUSTOM BLOCK STYLES */
 
-div.RichEditor-act {
+.RichEditor-act {
   text-decoration: underline;
   text-transform: uppercase;
   margin-top: 24px;
@@ -73,29 +73,29 @@ div.RichEditor-act {
   font-size: 1.25em !important;
 }
 
-div.RichEditor-scene {
+.RichEditor-scene {
   text-decoration: underline;
   margin-top: 5px;
   font-size: 1.25em !important;
 }
 
-div.RichEditor-character  {
+.RichEditor-character  {
   text-align: center;
   text-transform: uppercase;
   margin-top: 12px;
 }
 
-div.RichEditor-dialogue {
+.RichEditor-dialogue {
   margin-left: 20%;
   margin-right: 20%;
   margin-top: 6px;
 }
 
-div.RichEditor-action {
+.RichEditor-action {
   margin-top: 16px;
 }
 
-div.RichEditor-parenthetical {
+.RichEditor-parenthetical {
   text-align: center;
 }
 

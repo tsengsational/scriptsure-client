@@ -269,10 +269,10 @@ class EditorContainer extends Component {
     return (
       <div className="editor" id="richEditor" onClick={this.focus}>
         <Grid columns={3}>
-          <Grid.Column width={3}>
-            <Outline outline={this.state.outline} />
+          <Grid.Column width={3} id="left-gutter">
+            <Outline className="outline" outline={this.state.outline} />
           </Grid.Column>
-          <Grid.Column width={10}>
+          <Grid.Column width={10} id="script">
             {selectedBlock
               ? <SideToolbar
                   editorState={editorState}
@@ -306,7 +306,7 @@ class EditorContainer extends Component {
               blockRenderMap={extendedBlockRenderMap}
             />
           </Grid.Column>
-          <Grid.Column width={3}>
+          <Grid.Column width={3} id="right-gutter">
             {displayType}
             <div className="display-type">{this.state.blockType}</div>
           </Grid.Column>

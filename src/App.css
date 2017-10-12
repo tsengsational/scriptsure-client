@@ -213,3 +213,53 @@ div.center.aligned.four.wide.column {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+@media print {
+  .outline {
+    display: none;
+  }
+
+  #navbar {
+    display: none;
+  }
+
+  .side-toolbar {
+    display: none;
+  }
+
+  div.RichEditor-act {
+    font-size: 10pt !important;
+  }
+  div.RichEditor-action {
+    font-size: 10pt !important;
+  }
+  div.RichEditor-scene {
+    font-size: 10pt !important;
+  }
+  div.RichEditor-character {
+    font-size: 10pt !important;
+  }
+  div.RichEditor-parenthetical {
+    font-size: 10pt !important;
+  }
+  div.RichEditor-dialogue {
+    font-size: 10pt !important;
+  }
+  html {
+    background-color: white !important;
+  }
+
+  div#script {
+    width: 100% !important;
+    margin: auto;
+  }
+
+  div#left-gutter {
+    display: none !important;
+  }
+
+  div#right-gutter {
+    display: none !important;
+  }
+
+}
