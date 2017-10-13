@@ -232,18 +232,26 @@ class EditorContainer extends Component {
 
   getOutline = () => {
     console.log("getting Acts")
-    const oulineElements = [...document.getElementsByClassName('outliner')]
-    oulineElements.forEach((act, index)=> {
+    const outlineElements = [...document.getElementsByClassName('outliner')]
+    outlineElements.forEach((act, index)=> {
       let link = document.createElement('a')
       let name = act.firstChild.firstChild.firstChild.innerText
       link.setAttribute('name', name.concat('-').concat(index))
       act.appendChild(link)
     })
-    const outline = oulineElements.map((element) => {
+    const outline = outlineElements.map((element) => {
       return element.firstChild.firstChild.firstChild.innerText
     })
     this.setState({
       outline: outline
+    })
+  }
+
+  filterOutline = () => {
+    let inBetween = false;
+    const blocks = document.querySelector('.public-DraftEditor-content').firstChild.children
+    blocks.forEach(block => {
+      
     })
   }
 

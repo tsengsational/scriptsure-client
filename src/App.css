@@ -227,10 +227,16 @@ div.center.aligned.four.wide.column {
     display: none;
   }
 
+  .hide {
+    visibility: hidden;
+  }
+
   div.RichEditor-act {
+    display: inline;
     font-size: 10pt !important;
   }
   div.RichEditor-action {
+    display: inline;
     font-size: 10pt !important;
   }
   div.RichEditor-scene {
