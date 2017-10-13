@@ -1,5 +1,19 @@
 import { Map } from 'immutable'
 import { DefaultDraftBlockRenderMap } from 'draft-js'
+import React from 'react'
+
+class parenthesisWrapper extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+  render () {
+    return (
+      <div className="parenthetical">
+        {this.props.children}
+      </div>
+    )
+  }
+}
 
 const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
   act: {
@@ -18,7 +32,8 @@ const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
     element: 'div'
   },
   parenthetical: {
-    element: 'div'
+    element: 'span',
+    wrapper: parenthesisWrapper
   }
 })
 )
