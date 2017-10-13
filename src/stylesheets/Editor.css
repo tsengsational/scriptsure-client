@@ -98,7 +98,12 @@
 .RichEditor-parenthetical {
   text-align: center;
 }
-
+.RichEditor-parenthetical::before {
+  content: "(";
+}
+.RichEditor-parenthetical::after {
+  content: ")";
+}
 
 /* CUSTOM EDITOR ELEMENT CSS */
 
