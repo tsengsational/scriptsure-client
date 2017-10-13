@@ -32,9 +32,7 @@ const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
     element: 'div'
   },
   parenthetical: {
-    element: 'span',
-    wrapper: parenthesisWrapper
-  }
+    element: 'span'  }
 })
 )
 
