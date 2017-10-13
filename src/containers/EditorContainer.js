@@ -251,7 +251,7 @@ class EditorContainer extends Component {
     let inBetween = false;
     const blocks = document.querySelector('.public-DraftEditor-content').firstChild.children
     blocks.forEach(block => {
-      
+
     })
   }
 
@@ -290,7 +290,6 @@ class EditorContainer extends Component {
                 />
               : null
             }
-            {console.log(this.props)}
             {this.state.inlineToolbar.show
               ? <InlineToolbar
                   editorState={editorState}

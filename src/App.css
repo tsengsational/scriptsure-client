@@ -227,9 +227,7 @@ div.center.aligned.four.wide.column {
     display: none;
   }
 
-  .hide {
-    visibility: hidden;
-  }
+
 
   div.RichEditor-act {
     display: inline;

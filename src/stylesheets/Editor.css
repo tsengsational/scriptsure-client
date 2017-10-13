@@ -63,6 +63,14 @@
   color: #5890ff;
 }
 
+.small-text {
+  font-size: .7em;
+}
+
+.hide {
+  display: none;
+}
+
 /* CUSTOM BLOCK STYLES */
 
 .RichEditor-act {
