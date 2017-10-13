@@ -100,9 +100,11 @@
 }
 .RichEditor-parenthetical::before {
   content: "(";
+  display: inline;
 }
 .RichEditor-parenthetical::after {
   content: ")";
+  display: inline;
 }
 
 /* CUSTOM EDITOR ELEMENT CSS */
