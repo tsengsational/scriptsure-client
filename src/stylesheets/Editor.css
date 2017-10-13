@@ -98,10 +98,10 @@
 .RichEditor-parenthetical {
   text-align: center;
 }
-.RichEditor-parenthetical > span ::before {
+span.RichEditor-parenthetical div.public-DraftStyleDefault-block:first-child:before {
   content: "(";
 }
-.RichEditor-parenthetical > span ::after {
+span.RichEditor-parenthetical div.public-DraftStyleDefault-block:first-child:after {
   content: ")";
 }
 
